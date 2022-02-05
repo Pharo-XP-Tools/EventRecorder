@@ -137,6 +137,11 @@ EREventRecorder >> deliveryPreSuspendingAction: aBlockClosure [
 ]
 
 { #category : #packing }
+EREventRecorder >> eventConsolidatorClass [
+	^EREventConsolidate 
+]
+
+{ #category : #packing }
 EREventRecorder >> flush [
 	"Be careful! You will lost all data."
 	collectors do: #flush
@@ -192,7 +197,7 @@ EREventRecorder >> pack [
 	self canSendDiagnosticsAndUsageData ifFalse: [ ^ self flush; yourself ].
 	allCollectors := OrderedCollection new: collectors size.
 	collectors do: [ :eachCollector | allCollectors addLast: eachCollector ].
-	consolidatedCollectors := EREventConsolidate new collectors: allCollectors; consolidated.
+	consolidatedCollectors := self eventConsolidatorClass new collectors: allCollectors; consolidated.
 	consolidatedCollectors do: [ :eachCollector | | bundle |
 		eachCollector size > 0 ifTrue: [ 
 			bundle := packing pack: eachCollector.
