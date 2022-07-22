@@ -8,17 +8,3 @@ Class {
 ERStonPackingTest >> packingClass [
 	^ ERStonPacking
 ]
-
-{ #category : #test }
-ERStonPackingTest >> testFallbackSanitizeAndSerialize [
-
-	self
-		assert: (ERStonPacking new materialize:
-				 (ERStonPacking new fallbackSanitizeAndSerialize: '’'))
-		isString.
-		self
-		assert: (ERStonPacking new materialize:
-				 (ERStonPacking new fallbackSanitizeAndSerialize: '.’/'))
-		isString.
-
-]

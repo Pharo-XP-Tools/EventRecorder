@@ -25,7 +25,7 @@ EREventPacking class >> default [
 
 { #category : #'instance creation' }
 EREventPacking class >> ston [
-	^ ERStonPacking new
+	^ ERSafeStonPacking new
 ]
 
 { #category : #private }
