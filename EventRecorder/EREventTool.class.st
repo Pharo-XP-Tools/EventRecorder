@@ -24,37 +24,39 @@ openSettingsBrowser
 
 "
 Class {
-	#name : #EREventTool,
-	#superclass : #Object,
-	#category : #'EventRecorder-Core'
+	#name : 'EREventTool',
+	#superclass : 'Object',
+	#category : 'EventRecorder-Core',
+	#package : 'EventRecorder',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EREventTool class >> default [
 	^ self new
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 EREventTool >> defaultDownloadDirectory [
 	^ FileSystem disk workingDirectory
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 EREventTool >> defaultDownloadFilename [
 	^ self defaultDownloadDirectory / 'gt-events.zip'
 ]
 
-{ #category : #configuration }
+{ #category : 'configuration' }
 EREventTool >> defaultEventsDirectory [
 	^ self defaultDownloadDirectory / 'gt' / 'events'
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 EREventTool >> defaultUrl [
 	^ 'http://gc.dcc.uchile.cl/gt-events.zip'
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 EREventTool >> download [
 	"self default download"
  	UIManager default informUserDuring: [ :bar |
@@ -74,17 +76,17 @@ EREventTool >> download [
 	]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 EREventTool >> ensureDownloadedData [
 	self defaultDownloadFilename exists ifFalse: [ self download ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 EREventTool >> ensureExtractedData [
 	self defaultEventsDirectory exists ifFalse: [ self extract ]
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 EREventTool >> ensureLocalDirectory [
 	"self default ensureLocalDirectory"
 	self 
@@ -92,12 +94,12 @@ EREventTool >> ensureLocalDirectory [
 		ensureExtractedData
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 EREventTool >> extract [
 	(ZipArchive new readFrom: self defaultDownloadFilename) extractAllTo: FileLocator workingDirectory.
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 EREventTool >> printHumanReadableSize: aTotalNumber [
 	| humanReadable length unit |
 	length := ((aTotalNumber decimalDigitLength / 3) truncated) - 1 max: 0.
@@ -109,14 +111,14 @@ EREventTool >> printHumanReadableSize: aTotalNumber [
 	^ humanReadable printString, ' ', unit
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 EREventTool >> unpackAll [
 	"self default unpackAll inspect"
 	self ensureLocalDirectory.
 	^ EREventUnpacking default safeUnpackDirectory: self defaultEventsDirectory.
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 EREventTool >> unpackAll: aFileReference [
 	"self default unpackAll: './gt/events' asFileReference.
 	self default unpackAll: './gt/events/roassal2Examples' asFileReference.

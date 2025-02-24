@@ -4,41 +4,43 @@ I represents Privacy settings. You can open Settings Browser and see Privacy gro
 Execute: SettingBrowser open
 "
 Class {
-	#name : #EREventRecorderSettings,
-	#superclass : #Object,
+	#name : 'EREventRecorderSettings',
+	#superclass : 'Object',
 	#classInstVars : [
 		'url'
 	],
-	#category : #'EventRecorder-Settings'
+	#category : 'EventRecorder-Settings',
+	#package : 'EventRecorder',
+	#tag : 'Settings'
 }
 
-{ #category : #cleanup }
+{ #category : 'cleanup' }
 EREventRecorderSettings class >> cleanUp [
 	"Clean settings."
 	url := nil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EREventRecorderSettings class >> stringUrl [
 	^ self url asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EREventRecorderSettings class >> stringUrl: aUrlString [
 	^ self url: aUrlString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EREventRecorderSettings class >> url [
 	^ url ifNil: [ url := 'http://gc.dcc.uchile.cl.:8080/gt/events' asZnUrl ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EREventRecorderSettings class >> url: aZnUrl [
 	url := aZnUrl ifNotNil: [ aZnUrl asZnUrl ]
 ]
 
-{ #category : #settings }
+{ #category : 'settings' }
 EREventRecorderSettings class >> urlSettingsOn: aBuilder [ 
 	<systemsettings>	
 	(aBuilder setting: #stringUrl)
