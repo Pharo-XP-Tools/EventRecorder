@@ -42,7 +42,7 @@ BaselineOfEventRecorder >> baseline: spec [
 		
 		spec 
 			group: 'Core' with: #('EventRecorder' );
-			group: 'default' with: #('EventRecorder-Tests' 'EventRecorder-Fuel-Tests' 'EventRecorder-UI-Tests' 'EventRecorder-Server-Tests' 'EventRecorder-Help' 'EventRecorder-Inspector')
+			group: 'default' with: #('EventRecorder-Tests' 'EventRecorder-Fuel-Tests' 'EventRecorder-UI-Tests' 'EventRecorder-Server-Tests' 'EventRecorder-Inspector')
 		
 		]
 
