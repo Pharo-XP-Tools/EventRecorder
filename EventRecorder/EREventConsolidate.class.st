@@ -17,20 +17,22 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #EREventConsolidate,
-	#superclass : #Object,
+	#name : 'EREventConsolidate',
+	#superclass : 'Object',
 	#instVars : [
 		'collectors'
 	],
-	#category : #'EventRecorder-Support'
+	#category : 'EventRecorder-Support',
+	#package : 'EventRecorder',
+	#tag : 'Support'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EREventConsolidate >> collectors: aCollection [ 
 	collectors := aCollection
 ]
 
-{ #category : #'accessing - computed' }
+{ #category : 'accessing - computed' }
 EREventConsolidate >> consolidated [
 	| consolidatedCollectors |
 	consolidatedCollectors := OrderedDictionary new.

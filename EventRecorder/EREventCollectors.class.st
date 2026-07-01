@@ -14,16 +14,18 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #EREventCollectors,
-	#superclass : #Object,
+	#name : 'EREventCollectors',
+	#superclass : 'Object',
 	#instVars : [
 		'mutex',
 		'collectors'
 	],
-	#category : #'EventRecorder-Support'
+	#category : 'EventRecorder-Support',
+	#package : 'EventRecorder',
+	#tag : 'Support'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 EREventCollectors >> add: aGTEventCollector [
 	^ mutex critical: [ 
 		(collectors identityIncludes: aGTEventCollector)
@@ -31,19 +33,19 @@ EREventCollectors >> add: aGTEventCollector [
 			ifTrue: [ aGTEventCollector ] ]
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 EREventCollectors >> do: oneArgBlock [
 	mutex critical: [ collectors do: oneArgBlock ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 EREventCollectors >> initialize [
 	super initialize.
 	mutex := Mutex new.
 	collectors := OrderedCollection new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EREventCollectors >> numberOfEvents [
 	^ mutex critical: [ 
 		collectors 
@@ -51,7 +53,7 @@ EREventCollectors >> numberOfEvents [
 			ifNotEmpty: [ collectors sum: #size ] ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 EREventCollectors >> printOn: aStream [
 	super printOn: aStream.
 	aStream
@@ -67,19 +69,19 @@ EREventCollectors >> printOn: aStream [
 		nextPut: $]
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 EREventCollectors >> remove: aGTEventCollector [ 
 	^ mutex critical: [ collectors remove: aGTEventCollector ifAbsent: nil ]
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 EREventCollectors >> removeLiberatedCollectors [
 	mutex critical: [ | liberated |
 		liberated := collectors select: #isLiberated.
 		collectors removeAll: liberated ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 EREventCollectors >> size [
 	^ mutex critical: [ collectors size ]
 ]
