@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfEventRecorder,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfEventRecorder
+	#name : 'BaselineOfEventRecorder',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfEventRecorder',
+	#package : 'BaselineOfEventRecorder'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfEventRecorder >> baseline: spec [
   <baseline>
   spec
@@ -23,9 +24,9 @@ BaselineOfEventRecorder >> baseline: spec [
 		spec 
 			package: 'EventRecorder-Inspector'
 			with: [ spec requires: #( 'EventRecorder' ) ].
-		spec 
+	"	spec 
 			package: 'EventRecorder-Help'
-			with: [ spec requires: #( 'EventRecorder') ].
+			with: [ spec requires: #( 'EventRecorder') ]."
 		spec 
 			package: 'EventRecorder-UI'
 			with: [ spec requires: #( 'EventRecorder') ].

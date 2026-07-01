@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfEventRecorder }
+Package { #name : 'BaselineOfEventRecorder' }
